@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<meta charset="UTF-8" />
+		<title>Insert title here</title>
+		<h:outputStylesheet library="css" name="tables.css"/>
+		<h:outputStylesheet library="css" name="styles.css"/>
+	</h:head>
+	<h:body>
+		
+      <h:form>
+      	<h:commandButton value="Add Course" action="add_course"></h:commandButton>
+         <h:dataTable value="#{courseController.getCourses()}" var = "course"
+         	styleClass="table"
+         	headerClass = "table-header"
+            rowClasses = "table-odd-row,table-even-row">        
+            <h:column>    				
+               <f:facet name = "header">Course ID</f:facet>
+               #{course.cid}
+            </h:column>
+            <h:column>
+               <f:facet name = "header">Course name</f:facet>
+               #{course.cname}
+            </h:column>
+            <h:column>
+               <f:facet name = "header">Course duration</f:facet>
+               #{course.duration}
+            </h:column>
+            <h:column>
+               <f:facet name = "header">Action</f:facet>
+               <h:link value="Sohw students" outcome="list_students"/>
+               <h:link value="Delete" outcome="list_courses"/>
+            </h:column>
+         </h:dataTable>
+      </h:form>
+      <h:link value="Home" outcome="index"/>
+	</h:body>
+</html>
