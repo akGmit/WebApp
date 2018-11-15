@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import com.student.DAOs.CollegeMySQL;
-import com.student.Models.Course;
 import com.student.Models.Student;
 
 @ManagedBean@RequestScoped
 
 public class StudentController {
+	
 	private CollegeMySQL studentDAO = new CollegeMySQL("jdbc:mysql://localhost:3306/studentDB", "studentDAO", "student123");
 	private ArrayList<Student> students;
 	private ResultSet result;
@@ -29,5 +29,9 @@ public class StudentController {
 		}	
 		
 		return students;
+	}
+	
+	public void addStudent(Student s) {
+		studentDAO.executeUpdate("insert into student values('"+s.getSid()+"','"+s.getCid()+"','"+s.getName()+"','"+s.getAddress()+"')");
 	}
 }
